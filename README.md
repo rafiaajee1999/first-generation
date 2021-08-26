@@ -2,40 +2,33 @@
 import sys
 print('Python:{}'.format(sys.version))
 import scipy
-print('Scipy:{}'.format(scipy._version_))
+print('scipy: {}'.format(scipy.__version__))
 import numpy
-print(Numpy:{}'.format(numpy._version_))
+print('Numpy:{}'.format(numpy.__version__))
 import matplotlib
-print('Matplotlib:{}'.format(matplotlib._version_))
+print('Matplotlib:{}'.format(matplotlib.__version__))
 import pandas
-print('Pandas:{}'.format(pandas._version_))
+print('Pandas:{}'.format(pandas.__version__))
 import sklearn
-print('Sklearn:{}'.format(sklearn._version_))
-python:3.6.5|Anaconda,Inc.|(default,Apr29.2018,16:14)
-[GCC 7.2.0]
-scipy:1.1.0
-numpy:1.14.5
-matplotlib:2.2.2
-pandas:0.23.4
-sklearn:0.19.1
+print('Sklearn:{}'.format(sklearn.__version__))
 import pandas
-fromat pandas import read_CSV
-from pandas.plotting import scattermatrix
+from pandas import read_csv
+from pandas.plotting import scatter_matrix
 from matplotlib import pyplot
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import stratifiedkFlod
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import Logistic Regression
-from sklearn.tree import DecisionTreeclassifier
-from sklearn.neighbors import kNeighborsclassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.naive_boys import GaussianNB
-from sklearn.SVM import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.svm import SVC
 from sklearn import model_selection
-from sklearn.ensemble import voting classifier
+from sklearn.ensemble import VotingClassifier
 #loading the data
 url=
 names=['sepal-length','sepal-width','petal-length','petal-width','class']
