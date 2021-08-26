@@ -30,20 +30,19 @@ from sklearn.svm import SVC
 from sklearn import model_selection
 from sklearn.ensemble import VotingClassifier
 #loading the data
-url=
-names=['sepal-length','sepal-width','petal-length','petal-width','class']
-dataset=read_CSV(url,names=names)
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+dataset = pandas.read_csv(url, names=names)
 #dimension of the dataset
 print(dataset.shape)
-(150,5)
 #take a peak at the data
 print(dataset.head(20))
 #statistical summary
 print(dataset.describe())
 #class distribution
-print(dataset.groupy('class').size())
+print(dataset.groupby('class').size())
 #univariate plots_box and whisker plots
-dataset.plot(kind='box', subplots=True, layout(2,2), sharen=Flase, sharey=Flase)
+dataset.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
 pyplot.show()
 #histogram of the variable
 dataset.hist()
@@ -54,9 +53,9 @@ pyplot.show()
 #creating a validation dataset
 #splitting dataset
 array=dataset.values
-x=array[:,0:4]
+X=array[:,0:4]
 y=array[:,4]
-x_train, x_validation, y_train, y_va;idation: tarin_test_split(x,y, test_size+0.2, random_state=1)
+X_train, X_valudation, y_train, y_validation= train_test_split(X,y, test_size=0.2, random_state=1)
 #Logistic Regression
 #Linear Discriminant Analysis
 #K_Nearest neighbors
@@ -64,29 +63,29 @@ x_train, x_validation, y_train, y_va;idation: tarin_test_split(x,y, test_size+0.
 #Gaussian Naive Bayes
 #Support Vector Machines
 #building models
-model=[]
-models.append(('LR', LogisticRegression(solver='liblinear', multi_class='over')))
+models=[]
+models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
-models.append(('KNN', KNeighborsclassifier()))
+models.append(('KNN', KNeighborsClassifier()))
 models.append(('NB', GaussianNB()))
-models.append(('SVM', (gamma='auto')))
+models.append(('SVM',SVC(gamma='auto')))
 #evalute the created models
-result=[]
-names=[]
+results = []
+names = []
 for name, model in models:
-kflod=stratified kflod(n_splits=10, random_state=1)
-CV_result=cross_val_score(model, x_train, y_train, CV=kflod.scoring='accuracy')
-results.append(CV_results)
-name.append(name)
-print('%s:%f(%f)'%(name, CV_results.mean(), CV_results.std()))
+    kfold=StratifiedKFold(n_splits=10, random_state=1)
+    cv_results = cross_val_score(model, X_train, Y_train, cv=kfold, scoring='accuracy')
+    results.append(cv_results)
+    names.append(name)
+    print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
 #Compare our models
 pyplot.boxplot(results, labels=names)
 pyplot.title('Algorithm Comparison')
 pyplot.show()
 #make prediction on SVM
 model=SVC(gamma='auto')
-model.fit(x_train, y_train)
-predictions=model.predict(x_validation)
+model.fit(X_train, y_train)
+predictions=model.predict(X_validation)
 #evaluate our predictions
 print(accuracy_score(y_validation, predictions))
 print(confusion_matrix(y_validation, predictions))
